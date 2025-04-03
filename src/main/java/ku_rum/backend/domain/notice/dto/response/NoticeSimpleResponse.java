@@ -1,9 +1,13 @@
 package ku_rum.backend.domain.notice.dto.response;
 
 import ku_rum.backend.domain.notice.domain.Notice;
+import ku_rum.backend.domain.notice.domain.NoticeCategory;
+import ku_rum.backend.domain.notice.domain.NoticeStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -30,4 +34,5 @@ public class NoticeSimpleResponse {
         this.category = category;
         this.isImportant = isImportant;
     }
+
 }

@@ -6,8 +6,8 @@ import ku_rum.backend.domain.notice.domain.repository.NoticeRepository;
 import ku_rum.backend.domain.notice.dto.response.NoticeSimpleResponse;
 import ku_rum.backend.domain.notice.dto.response.RecentSearchTermResponse;
 import ku_rum.backend.global.exception.notice.InvalidPageException;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
@@ -98,4 +98,10 @@ public class NoticeService {
         }
     }
 
+    /*
+     * 4) 최근 공지사항 5개
+     */
+    public List<NoticeSimpleResponse> getUrls() {
+        return noticeRepository.findTop5ByDateBeforeOrderByDateDesc(LocalDateTime.now().toLocalDate());
+    }
 }

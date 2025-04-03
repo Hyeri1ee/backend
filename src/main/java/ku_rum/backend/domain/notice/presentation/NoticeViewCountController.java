@@ -30,6 +30,11 @@ public class NoticeViewCountController {
         return BaseResponse.ok(url + "에 대해 조회수가 증가되었습니다.");
     }
 
+    /**
+     * 인기 공지사항 제목 반환
+     * @param userDetails
+     * @return
+     */
     @GetMapping("/popular/url")
     public BaseResponse<List<String>> mostViewedNotices(@AuthenticationPrincipal CustomUserDetails userDetails){
         return BaseResponse.ok(viewCountService.mostViewedNotices());

@@ -1,6 +1,7 @@
 package ku_rum.backend.domain.notice.presentation;
 
 import ku_rum.backend.domain.notice.application.NoticeService;
+import ku_rum.backend.domain.notice.dto.response.NoticeSimpleResponse;
 import ku_rum.backend.domain.notice.dto.response.RecentSearchTermResponse;
 import ku_rum.backend.global.security.CustomUserDetails;
 import ku_rum.backend.global.support.response.BaseResponse;
@@ -9,6 +10,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/notices")
@@ -26,5 +29,10 @@ public class NoticeRecentController {
     public BaseResponse<RecentSearchTermResponse> searchTerms(@AuthenticationPrincipal CustomUserDetails userDetails){
         Long userId = userDetails.getUserId();
         return BaseResponse.ok(noticeService.getRecentSearchTerms(userId));
+    }
+
+    @GetMapping("/recentUrls5")
+    public BaseResponse<List<NoticeSimpleResponse>> urls(@AuthenticationPrincipal CustomUserDetails userDetails){
+        return BaseResponse.ok(noticeService.getUrls());
     }
 }
